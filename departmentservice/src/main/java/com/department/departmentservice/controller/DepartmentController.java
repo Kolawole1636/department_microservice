@@ -4,6 +4,7 @@ package com.department.departmentservice.controller;
 import com.department.departmentservice.model.Department;
 import com.department.departmentservice.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,6 +26,16 @@ public class DepartmentController {
     public Department getDepartment(@PathVariable int id){
 
         return departmentService.getDepartment(id);
+    }
+
+
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<Void> updateStaffCount(
+            @PathVariable int id,
+            @RequestParam int incrementBy) {
+        departmentService.updateStaffCount(id, incrementBy);
+        return ResponseEntity.ok().build();
     }
 
 

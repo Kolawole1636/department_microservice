@@ -25,4 +25,17 @@ public class DepartmentService {
 
         return departmentRepository.findById(id).get();
     }
+
+
+
+    public void updateStaffCount(int id, int incrementBy) {
+
+        Department department = departmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+        department.setNumberOfStaff(department.getNumberOfStaff() + incrementBy);
+        departmentRepository.save(department);
+
+
+
+    }
 }
