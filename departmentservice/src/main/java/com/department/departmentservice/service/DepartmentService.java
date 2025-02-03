@@ -4,6 +4,7 @@ package com.department.departmentservice.service;
 import com.department.departmentservice.model.Department;
 import com.department.departmentservice.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,12 +21,11 @@ public class DepartmentService {
     }
 
 
-
+    @Cacheable(value = "department", key="#id")
     public Department getDepartment(int id) {
 
         return departmentRepository.findById(id).get();
     }
-
 
 
     public void updateStaffCount(int id, int incrementBy) {
